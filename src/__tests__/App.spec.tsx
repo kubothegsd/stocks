@@ -4,7 +4,7 @@ import { App } from '../App';
 
 describe('App', () => {
   it('works', () => {
-    render(<App name="a" />);
-    expect(screen.getByText('a')).toBeVisible();
+    render(<App />);
+    expect(screen.getByText('This is the test app')).toBeVisible();
   });
 });

@@ -1,22 +1,19 @@
 import React from 'react';
 import CountryDropdown from './components/CountryDropdown';
-import DataTable from './components/DataTable';
+import LoadMoreButton from './components/LoadMoreButton';
+import MarketCapSortDropdown from './components/MarketCapSortDropdown';
+import TileList from './components/TileList';
 
-interface Props {
-  name?: string;
-}
-const App: React.FunctionComponent<Props> = ({ name }) => {
+const App: React.FunctionComponent = () => {
   return (
     <React.Fragment>
-      <h1>The {name}</h1>
+      <h1>This is the test app</h1>
       <CountryDropdown />
-      <DataTable />
+      <MarketCapSortDropdown />
+      <TileList />
+      <LoadMoreButton />
     </React.Fragment>
   );
-};
-
-App.defaultProps = {
-  name: 'Grid',
 };
 
 export { App };
