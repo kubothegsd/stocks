@@ -10,6 +10,14 @@
     "lib": ["es6", "dom"],
     "rootDir": "src",
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true
-  }
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
+  },
+  "exclude": [
+    "node_modules",
+    "jest.config.js",
+    "dist",
+    "setupTests.ts",
+    "styleMock.ts"
+  ]
 }
