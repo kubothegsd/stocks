@@ -1,9 +1,9 @@
 import React from 'react';
 import { isShownLoadMoreSelector, nextOffsetSelector } from './state';
-import { stockRequestStateSelector } from '../api/stock/request-state';
-import { StockRequestState } from '../api/stock/data-types';
-import { useAppSelector } from '../hooks/redux';
-import { useFetchStock } from '../hooks/useFetchStock';
+import { stockRequestStateSelector } from '../../api/stock/request-state';
+import { StockRequestState } from '../../api/stock/data-types';
+import { useAppSelector } from '../../hooks/redux';
+import { useFetchStock } from '../../hooks/useFetchStock';
 
 const LoadMoreButton = () => {
   const isShownLoadmore = useAppSelector<boolean>(isShownLoadMoreSelector);

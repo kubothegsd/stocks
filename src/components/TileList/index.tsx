@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
-import { Stock } from '../api/stock/data-types';
+import { Stock } from '../../api/stock/data-types';
 import TileItem from './TileItem';
 
-import { useAppSelector } from '../hooks/redux';
-import { useFetchStock } from '../hooks/useFetchStock';
-import { stockRequestStateSelector } from '../api/stock/request-state';
-import { StockRequestState } from '../api/stock/data-types';
+import { useAppSelector } from '../../hooks/redux';
+import { useFetchStock } from '../../hooks/useFetchStock';
+import { stockRequestStateSelector } from '../../api/stock/request-state';
+import { StockRequestState } from '../../api/stock/data-types';
 
-import { stockDataSelector } from '../api/stock/response-state';
+import { stockDataSelector } from '../../api/stock/response-state';
 
 interface TileListProps {
   data?: Stock[];

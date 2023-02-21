@@ -1,4 +1,7 @@
-import { isShownLoadMoreSelector, nextOffsetSelector } from '../state';
+import {
+  isShownLoadMoreSelector,
+  nextOffsetSelector,
+} from '../LoadMoreButton/state';
 import { StockRequestState } from '../../api/stock/data-types';
 
 describe('isShownLoadMoreSelector', () => {
