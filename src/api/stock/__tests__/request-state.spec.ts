@@ -2,7 +2,7 @@ import reducerObj, {
   setParamsAC,
   setLoadingAC,
   setErrorAC,
-  resetRequestStateWithAC,
+  resetStateForNewRequestAC,
   REQUEST_KEY,
 } from '../request-state';
 import { StockRequestState, StockRequestParams } from '../data-types';
@@ -80,8 +80,8 @@ describe('requestStateReducer', () => {
     });
   });
 
-  describe('resetRequestStateWithAC', () => {
-    it('resets request state and set the value of params', () => {
+  describe('resetStateForNewRequest', () => {
+    it('resets request state needed for new request', () => {
       const previousState: StockRequestState = {
         countryCode: 'ca',
         offset: 0,
@@ -91,17 +91,14 @@ describe('requestStateReducer', () => {
         error: 'This is the error',
       };
 
-      const payload = {
-        countryCode: 'us',
-      };
-
       const actual = requestStateReducer(
         previousState,
-        resetRequestStateWithAC(payload)
+        resetStateForNewRequestAC()
       );
       const expected = {
         ...initState,
-        countryCode: 'us',
+        countryCode: 'ca',
+        marketCapSort: 'asc',
       };
       expect(actual).toEqual(expected);
     });

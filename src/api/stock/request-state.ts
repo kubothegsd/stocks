@@ -35,13 +35,13 @@ const fetchStateSlice = createSlice({
     setLoading(state, action: PayloadAction<boolean>) {
       state.loading = action.payload;
     },
-    resetRequestStateWith(
-      _,
-      action: PayloadAction<Partial<StockRequestParams>>
-    ) {
+    resetStateForNewRequest(state) {
       return {
-        ...initialState,
-        ...action.payload,
+        ...state,
+        offset: initialState.offset,
+        size: initialState.size,
+        loading: initialState.loading,
+        error: initialState.error,
       };
     },
   },
@@ -51,7 +51,7 @@ export const {
   setParams: setParamsAC,
   setError: setErrorAC,
   setLoading: setLoadingAC,
-  resetRequestStateWith: resetRequestStateWithAC,
+  resetStateForNewRequest: resetStateForNewRequestAC,
 } = fetchStateSlice.actions;
 
 export const stockRequestStateSelector = (state: RootState) =>

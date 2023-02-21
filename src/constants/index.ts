@@ -3,6 +3,17 @@ export const API_ENDPOINT =
 export const DEFAULT_SIZE = 12;
 export const DEFAULT_MARKET_CAP_SORT = 'desc';
 
+export const MARKET_CAP_SORT_OPTIONS = [
+  {
+    option: 'desc',
+    label: 'Desc',
+  },
+  {
+    option: 'asc',
+    label: 'Asc',
+  },
+];
+
 export const COUNTRIES = [
   {
     option: 'global',
