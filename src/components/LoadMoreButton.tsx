@@ -8,18 +8,14 @@ import { useFetchStock } from '../hooks/useFetchStock';
 const LoadMoreButton = () => {
   const isShownLoadmore = useAppSelector<boolean>(isShownLoadMoreSelector);
   const nextOffset = useAppSelector<number>(nextOffsetSelector);
-  const { countryCode, size, marketCapSort, loading } =
-    useAppSelector<StockRequestState>(stockRequestStateSelector);
+  const { loading } = useAppSelector<StockRequestState>(
+    stockRequestStateSelector
+  );
 
-  const { fetchStockData: fetchNextStockData } = useFetchStock({
-    countryCode,
-    size,
-    offset: nextOffset,
-    marketCapSort,
-  });
+  const { fetchStockData } = useFetchStock();
 
   const handleClick = () => {
-    fetchNextStockData();
+    fetchStockData({ offset: nextOffset });
   };
 
   console.log('rerender load more', isShownLoadmore);

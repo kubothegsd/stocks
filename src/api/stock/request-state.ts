@@ -6,7 +6,7 @@ import { StockRequestParams, StockRequestState } from './data-types';
 
 export const REQUEST_KEY = 'stocks_request';
 
-const initialState = {
+export const initialState = {
   countryCode: 'ca',
   offset: 0,
   size: DEFAULT_SIZE,
@@ -35,6 +35,15 @@ const fetchStateSlice = createSlice({
     setLoading(state, action: PayloadAction<boolean>) {
       state.loading = action.payload;
     },
+    resetRequestStateWith(
+      _,
+      action: PayloadAction<Partial<StockRequestParams>>
+    ) {
+      return {
+        ...initialState,
+        ...action.payload,
+      };
+    },
   },
 });
 
@@ -42,6 +51,7 @@ export const {
   setParams: setParamsAC,
   setError: setErrorAC,
   setLoading: setLoadingAC,
+  resetRequestStateWith: resetRequestStateWithAC,
 } = fetchStateSlice.actions;
 
 export const stockRequestStateSelector = (state: RootState) =>

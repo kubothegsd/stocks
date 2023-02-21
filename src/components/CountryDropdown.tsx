@@ -1,24 +1,53 @@
 import React, { useState } from 'react';
+import { COUNTRIES } from '../constants';
+import { useAppSelector } from '../hooks/redux';
+import { useFetchStock } from '../hooks/useFetchStock';
+import {
+  stockRequestStateSelector,
+  resetRequestStateWithAC,
+  initialState,
+} from '../api/stock/request-state';
+import { resetDataAndMetaAC } from '../api/stock/response-state';
+import { StockRequestState } from '../api/stock/data-types';
+import { useAppDispatch } from '../hooks/redux';
 
 const CountryDropdown = () => {
+  const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
+  const { countryCode } = useAppSelector<StockRequestState>(
+    stockRequestStateSelector
+  );
+
+  const { fetchStockData } = useFetchStock();
 
   const handleButtonClick = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleOptionClick = (option: string) => {
-    // Handle the selected option here
+  const handleOptionClick = (countryCode: string) => {
+    // Reset data
+    dispatch(resetDataAndMetaAC());
+    dispatch(resetRequestStateWithAC({ countryCode }));
+
+    // fetch stock data with initial state and country
+    fetchStockData({ ...initialState, countryCode });
+    setIsOpen(!isOpen);
   };
 
   return (
     <div className="dropdown">
-      <button onClick={handleButtonClick}>Select a country</button>
+      <button onClick={handleButtonClick}>
+        Select a country {' ' + countryCode}
+      </button>
       {isOpen && (
         <ul>
-          <li onClick={() => handleOptionClick('Option 1')}>Option 1</li>
-          <li onClick={() => handleOptionClick('Option 2')}>Option 2</li>
-          <li onClick={() => handleOptionClick('Option 3')}>Option 3</li>
+          {COUNTRIES.map((country) => (
+            <li
+              key={country.option}
+              onClick={() => handleOptionClick(country.option)}>
+              {country.label}
+            </li>
+          ))}
         </ul>
       )}
     </div>

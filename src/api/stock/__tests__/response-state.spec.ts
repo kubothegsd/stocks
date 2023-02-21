@@ -4,6 +4,7 @@ import reducerObj, {
   DATA_KEY,
   META_KEY,
   stockDataReadySelector,
+  resetDataAndMetaAC,
 } from '../response-state';
 import { Meta, Stock } from '../data-types';
 import {
@@ -47,6 +48,13 @@ describe('dataReducer', () => {
       expect(actual).toEqual(expected);
     });
   });
+
+  describe('resetDataAndMetaAC', () => {
+    const previousState: Stock[] = [genStockSample({ id: 1, name: 'abc' })];
+    const actual = dataReducer(previousState, resetDataAndMetaAC());
+    const expected = [];
+    expect(actual).toEqual(expected);
+  });
 });
 
 describe('metaReducer', () => {
@@ -75,6 +83,13 @@ describe('metaReducer', () => {
       const expected = { total_records: 300 };
       expect(actual).toEqual(expected);
     });
+  });
+
+  describe('resetDataAndMetaAC', () => {
+    const previousState = { total_records: 400 };
+    const actual = metaReducer(previousState, resetDataAndMetaAC());
+    const expected = { total_records: undefined };
+    expect(actual).toEqual(expected);
   });
 });
 

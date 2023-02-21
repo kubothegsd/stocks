@@ -14,16 +14,12 @@ interface TileListProps {
 }
 
 const TileListWithLogic: React.FunctionComponent<TileListProps> = () => {
-  const { countryCode, offset, size, marketCapSort, loading, error } =
-    useAppSelector<StockRequestState>(stockRequestStateSelector);
+  const { loading, error } = useAppSelector<StockRequestState>(
+    stockRequestStateSelector
+  );
   const stockData = useAppSelector<Stock[]>(stockDataSelector);
 
-  const { fetchStockData } = useFetchStock({
-    countryCode,
-    offset,
-    size,
-    marketCapSort,
-  });
+  const { fetchStockData } = useFetchStock();
 
   useEffect(() => {
     fetchStockData();
