@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stock } from '../data/state-types';
+import { Stock } from '../api/stock/data-types';
 
 interface TileItemProps {
   item: Stock;

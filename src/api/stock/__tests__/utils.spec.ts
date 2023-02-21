@@ -1,4 +1,4 @@
-import { constructFetchPayload } from '../../api/stock/utils';
+import { constructFetchPayload } from '../utils';
 
 describe('constructFetchPayload', () => {
   it('returns the correct fetch payload', () => {
