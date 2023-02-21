@@ -1,18 +1,18 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import type { PreloadedState } from '@reduxjs/toolkit';
 
-import dataReducer from './data/state';
+import responseReducerObj from './api/stock/response-state';
+import requestStateReducerObj from './api/stock/request-state';
 
 // Create the root reducer separately so we can extract the RootState type
 const rootReducer = combineReducers({
-  data: dataReducer,
+  ...responseReducerObj,
+  ...requestStateReducerObj,
 });
 
 export function configureAppStore(preloadedState?: PreloadedState<RootState>) {
   const store = configureStore({
-    reducer: {
-      data: dataReducer,
-    },
+    reducer: rootReducer,
     preloadedState,
   });
 

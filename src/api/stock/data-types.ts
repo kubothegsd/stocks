@@ -1,3 +1,18 @@
+export interface StockRequestParams {
+  countryCode: string;
+  offset: number;
+  size: number;
+  marketCapSort?: 'asc' | 'desc';
+}
+
+export interface StockRequestState extends StockRequestParams {
+  loading: boolean;
+  error?: string;
+}
+
+export interface Meta {
+  total_records: number | undefined;
+}
 export interface Stock {
   id: number;
   name: string;
