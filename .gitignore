@@ -1,2 +1,5 @@
-/node_module
+# dependencies
+/node_modules
+
+# production
 /dist
