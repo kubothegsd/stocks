@@ -1,20 +1,27 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import type { PreloadedState } from '@reduxjs/toolkit';
 
 import dataReducer from './data/state';
 
-export default function configureAppStore() {
+// Create the root reducer separately so we can extract the RootState type
+const rootReducer = combineReducers({
+  data: dataReducer,
+});
+
+export function configureAppStore(preloadedState?: PreloadedState<RootState>) {
   const store = configureStore({
     reducer: {
       data: dataReducer,
     },
+    preloadedState,
   });
 
   return store;
 }
 
-const store = configureAppStore();
+export const store = configureAppStore();
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof configureAppStore>;
+export type AppDispatch = AppStore['dispatch'];
