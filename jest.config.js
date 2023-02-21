@@ -5,6 +5,6 @@ module.exports = {
   moduleNameMapper: {
     '.+\\.css$': '<rootDir>/styleMock.ts',
   },
-  testMatch: ['src/**/__tests__/*.(spec).(js|jsx|ts|tsx)'],
+  testMatch: ['**/src/**/__tests__/*.(spec).(js|jsx|ts|tsx)'],
   testEnvironment: 'jsdom',
 };
