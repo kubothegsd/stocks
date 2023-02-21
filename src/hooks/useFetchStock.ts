@@ -13,7 +13,7 @@ import {
   appendStockDataFromResponseAC,
   setMetaFromResponseAC,
 } from '../api/stock/response-state';
-import { StockRequestState } from '../api/stock/data-types';
+import { StockRequestState, ErrorsResponse } from '../api/stock/data-types';
 import { useAppSelector } from '../hooks/redux';
 
 export const useFetchStock = () => {
@@ -58,7 +58,11 @@ export const useFetchStock = () => {
         });
 
         if (!response.ok) {
-          throw new Error(response.statusText);
+          if (response.statusText) {
+            throw new Error(response.statusText);
+          }
+          const errorJSON: ErrorsResponse = await response.json();
+          throw new Error(errorJSON.errors[0].detail);
         }
         const json: StockResponse = await response.json();
 

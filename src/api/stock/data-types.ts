@@ -45,3 +45,13 @@ export interface StockResponse {
     noResultIfLimit: boolean;
   };
 }
+
+interface ErrorResponse {
+  status: number;
+  source: object;
+  title: string;
+  detail: string;
+}
+export interface ErrorsResponse {
+  errors: ErrorResponse[];
+}

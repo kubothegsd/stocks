@@ -8,19 +8,19 @@ import {
   MenuOptionGroup,
 } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
-import { useAppSelector } from '../../hooks/redux';
-import { useFetchStock } from '../../hooks/useFetchStock';
+import { useAppSelector } from '../../../hooks/redux';
+import { useFetchStock } from '../../../hooks/useFetchStock';
 import {
   stockRequestStateSelector,
   resetStateForNewRequestAC,
   initialState,
-} from '../../api/stock/request-state';
-import { resetDataAndMetaAC } from '../../api/stock/response-state';
+} from '../../../api/stock/request-state';
+import { resetDataAndMetaAC } from '../../../api/stock/response-state';
 import {
   StockRequestState,
   StockRequestParams,
-} from '../../api/stock/data-types';
-import { useAppDispatch } from '../../hooks/redux';
+} from '../../../api/stock/data-types';
+import { useAppDispatch } from '../../../hooks/redux';
 import { getOption, Option } from './utils';
 
 interface FilterDropdownProps {
@@ -41,14 +41,17 @@ const FilterDropdown: React.FunctionComponent<FilterDropdownProps> = ({
 
   const { fetchStockData } = useFetchStock();
 
-  const handleOptionClick = (value) => {
+  const handleOptionClick = (value: string) => {
     if (currentOptionValue === value) {
       return;
     }
 
+    // set current value to filter
+    dispatch(resetDataAndMetaAC());
+
     // Reset data
     dispatch(resetDataAndMetaAC());
-    dispatch(resetStateForNewRequestAC());
+    dispatch(resetStateForNewRequestAC({ [filterKey]: value }));
 
     // fetch stock data with initial state and country
     fetchStockData({

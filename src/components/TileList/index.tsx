@@ -57,7 +57,7 @@ const TileListWithLogic: React.FunctionComponent<TileListProps> = () => {
     );
   }
 
-  if (isEmpty) {
+  if (isDataReady && isEmpty) {
     return (
       <Flex
         direction="column"

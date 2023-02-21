@@ -39,13 +39,17 @@ const fetchStateSlice = createSlice({
     setLoading(state, action: PayloadAction<boolean>) {
       state.loading = action.payload;
     },
-    resetStateForNewRequest(state) {
+    resetStateForNewRequest(
+      state,
+      action: PayloadAction<Partial<StockRequestParams>>
+    ) {
       return {
         ...state,
         offset: initialState.offset,
         size: initialState.size,
         loading: initialState.loading,
         error: initialState.error,
+        ...action.payload,
       };
     },
   },

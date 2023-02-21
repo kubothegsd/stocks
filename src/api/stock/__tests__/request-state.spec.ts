@@ -93,11 +93,11 @@ describe('requestStateReducer', () => {
 
       const actual = requestStateReducer(
         previousState,
-        resetStateForNewRequestAC()
+        resetStateForNewRequestAC({ countryCode: 'ca' })
       );
       const expected = {
         ...initState,
-        countryCode: 'au',
+        countryCode: 'ca',
         marketCapSort: 'asc',
       };
       expect(actual).toEqual(expected);
