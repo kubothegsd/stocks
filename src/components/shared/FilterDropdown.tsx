@@ -1,4 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItemOption,
+  Button,
+  MenuOptionGroup,
+} from '@chakra-ui/react';
+import { ChevronDownIcon } from '@chakra-ui/icons';
 import { useAppSelector } from '../../hooks/redux';
 import { useFetchStock } from '../../hooks/useFetchStock';
 import {
@@ -24,7 +33,6 @@ const FilterDropdown: React.FunctionComponent<FilterDropdownProps> = ({
   filterKey,
 }) => {
   const dispatch = useAppDispatch();
-  const [isOpen, setIsOpen] = useState(false);
   const requestState = useAppSelector<StockRequestState>(
     stockRequestStateSelector
   );
@@ -33,13 +41,7 @@ const FilterDropdown: React.FunctionComponent<FilterDropdownProps> = ({
 
   const { fetchStockData } = useFetchStock();
 
-  const handleButtonClick = () => {
-    setIsOpen(!isOpen);
-  };
-
   const handleOptionClick = (value) => {
-    setIsOpen(!isOpen);
-
     if (currentOptionValue === value) {
       return;
     }
@@ -58,18 +60,26 @@ const FilterDropdown: React.FunctionComponent<FilterDropdownProps> = ({
 
   return (
     <div className="dropdown">
-      <button onClick={handleButtonClick}>{currentOption?.label}</button>
-      {isOpen && (
-        <ul>
-          {options.map((option) => (
-            <li
-              key={option.option}
-              onClick={() => handleOptionClick(option.option)}>
-              {option.label}
-            </li>
-          ))}
-        </ul>
-      )}
+      <Menu>
+        <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+          {currentOption?.label}
+        </MenuButton>
+        <MenuList type="radio">
+          <MenuOptionGroup
+            title="Order"
+            type="radio"
+            value={currentOption?.option}>
+            {options.map((option) => (
+              <MenuItemOption
+                key={option.option}
+                value={option.option}
+                onClick={() => handleOptionClick(option.option)}>
+                {option.label}
+              </MenuItemOption>
+            ))}
+          </MenuOptionGroup>
+        </MenuList>
+      </Menu>
     </div>
   );
 };

@@ -1,4 +1,12 @@
 import React, { useEffect } from 'react';
+import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+  Spinner,
+  Flex,
+} from '@chakra-ui/react';
 import { Stock } from '../../api/stock/data-types';
 import TileItem from './TileItem';
 
@@ -7,7 +15,10 @@ import { useFetchStock } from '../../hooks/useFetchStock';
 import { stockRequestStateSelector } from '../../api/stock/request-state';
 import { StockRequestState } from '../../api/stock/data-types';
 
-import { stockDataSelector } from '../../api/stock/response-state';
+import {
+  stockDataSelector,
+  stockDataReadySelector,
+} from '../../api/stock/response-state';
 
 interface TileListProps {
   data?: Stock[];
@@ -17,6 +28,7 @@ const TileListWithLogic: React.FunctionComponent<TileListProps> = () => {
   const { loading, error } = useAppSelector<StockRequestState>(
     stockRequestStateSelector
   );
+  const isDataReady = useAppSelector<boolean>(stockDataReadySelector);
   const stockData = useAppSelector<Stock[]>(stockDataSelector);
 
   const { fetchStockData } = useFetchStock();
@@ -25,21 +37,41 @@ const TileListWithLogic: React.FunctionComponent<TileListProps> = () => {
     fetchStockData();
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
+  if (loading && !isDataReady) {
+    return (
+      <Spinner
+        thickness="8px"
+        speed="0.65s"
+        emptyColor="gray.200"
+        color="blue.500"
+        size="xl"
+      />
+    );
   }
-  if (error) {
-    return <div>Error... {error}</div>;
-  }
-  return <TileList data={stockData} />;
+
+  return (
+    <React.Fragment>
+      <TileList data={stockData} />
+      {error && (
+        <Alert status="error">
+          <AlertIcon />
+          <AlertTitle>Error!</AlertTitle>
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
+      )}
+    </React.Fragment>
+  );
 };
 
 const TileList: React.FunctionComponent<TileListProps> = ({ data }) => (
-  <div className="app">
+  <Flex
+    width="100%"
+    flexDirection={{ base: 'column', md: 'row' }}
+    flexWrap="wrap">
     {data.map((stock) => (
       <TileItem key={stock.id} item={stock} />
     ))}
-  </div>
+  </Flex>
 );
 
 TileList.defaultProps = {

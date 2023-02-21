@@ -15,11 +15,11 @@ export const MARKET_CAP_SORT_OPTIONS = [
 ];
 
 export const COUNTRIES = [
-  {
-    option: 'global',
-    label: 'Global',
-    href: '/stocks/global/market-cap-large',
-  },
+  // {
+  //   option: 'global',
+  //   label: 'Global',
+  //   href: '/stocks/global/market-cap-large',
+  // },
   { option: 'us', label: 'United States', href: '/stocks/us/market-cap-large' },
   { option: 'au', label: 'Australia', href: '/stocks/au/market-cap-large' },
   {
