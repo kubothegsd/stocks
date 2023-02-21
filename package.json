@@ -5,7 +5,8 @@
   "main": "index.html",
   "scripts": {
     "start": "parcel index.html --open",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html",
+    "lint": "eslint src --ext .js,.ts,.tsx"
   },
   "dependencies": {
     "react": "16.8.4",
