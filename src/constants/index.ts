@@ -2,24 +2,24 @@ export const API_ENDPOINT =
   'https://api.simplywall.st/api/grid/filter?include=info,score';
 export const DEFAULT_SIZE = 12;
 export const DEFAULT_MARKET_CAP_SORT = 'desc';
-
+export const DEFAULT_COUNTRY = 'au';
 export const MARKET_CAP_SORT_OPTIONS = [
   {
     option: 'desc',
-    label: 'Desc',
+    label: 'Market Cap High to Low',
   },
   {
     option: 'asc',
-    label: 'Asc',
+    label: 'Market Cap Low to High',
   },
 ];
 
 export const COUNTRIES = [
-  // {
-  //   option: 'global',
-  //   label: 'Global',
-  //   href: '/stocks/global/market-cap-large',
-  // },
+  {
+    option: 'global',
+    label: 'Global',
+    href: '/stocks/global/market-cap-large',
+  },
   { option: 'us', label: 'United States', href: '/stocks/us/market-cap-large' },
   { option: 'au', label: 'Australia', href: '/stocks/au/market-cap-large' },
   {

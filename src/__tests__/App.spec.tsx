@@ -15,7 +15,6 @@ afterEach(() => server.resetHandlers());
 
 // Disable API mocking after the tests are done.
 afterAll(() => {
-  server.printHandlers();
   server.close();
 });
 
@@ -33,57 +32,62 @@ describe('App', () => {
     expect(screen.getByText('Loading...')).toBeVisible();
 
     // show a list of 12 first tiles
-    expect(await screen.findByText(/name-0-ca/)).toBeInTheDocument();
-    expect(screen.queryByText(/name-0-ca/)).toBeInTheDocument();
-    expect(screen.queryByText(/name-11-ca/)).toBeInTheDocument();
-    expect(screen.queryByText(/name-12-ca/)).not.toBeInTheDocument();
 
-    // show and click load more
+    expect(await screen.findByText(/name-0/)).toBeInTheDocument();
+    console.log(screen.getByText(/name-0/).innerHTML);
+    expect(screen.queryByText(/name-0-au/)).toBeInTheDocument();
+    expect(screen.queryByText(/name-11-au/)).toBeInTheDocument();
+    expect(screen.queryByText(/name-12-au/)).not.toBeInTheDocument();
+
+    // // show and click load more
     const loadMoreButton = screen.getByRole('button', { name: 'Load more' });
     expect(loadMoreButton).toBeInTheDocument();
     fireEvent.click(loadMoreButton);
-    expect(await screen.findByText(/name-12-ca/)).toBeInTheDocument();
-    expect(screen.queryByText(/name-13-ca/)).toBeInTheDocument();
-    expect(screen.queryByText(/name-23-ca/)).toBeInTheDocument();
-    expect(screen.queryByText(/name-24-ca/)).not.toBeInTheDocument();
+    expect(await screen.findByText(/name-12-au/)).toBeInTheDocument();
+    expect(screen.queryByText(/name-13-au/)).toBeInTheDocument();
+    expect(screen.queryByText(/name-23-au/)).toBeInTheDocument();
+    expect(screen.queryByText(/name-24-au/)).not.toBeInTheDocument();
 
-    // country dropdown
+    // // country dropdown
     const countryDopdownButton = screen.getByRole('button', {
-      name: 'Canada',
+      name: 'Australia',
     });
     expect(countryDopdownButton).toBeInTheDocument();
     fireEvent.click(countryDopdownButton);
 
-    // show and click australia option
-    expect(await screen.findByText(/Australia/)).toBeInTheDocument();
-    const australiaButton = screen.getByText('Australia');
+    // // show and click australia option
+    expect(await screen.findByText(/Canada/)).toBeInTheDocument();
+    const australiaButton = screen.getByText('Canada');
     expect(australiaButton).toBeInTheDocument();
     fireEvent.click(australiaButton);
-    expect(await screen.findByText(/name-0-au/)).toBeInTheDocument();
+    expect(await screen.findByText(/name-0-ca/)).toBeInTheDocument();
 
-    expect(screen.queryByText(/name-0-au/)).toBeInTheDocument();
-    expect(screen.queryByText(/name-11-au/)).toBeInTheDocument();
-    expect(screen.queryByText(/name-0-ca/)).not.toBeInTheDocument();
-    expect(screen.queryByText(/name-12-au/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/name-0-ca/)).toBeInTheDocument();
+    expect(screen.queryByText(/name-11-ca/)).toBeInTheDocument();
+    expect(screen.queryByText(/name-0-au/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/name-12-ca/)).not.toBeInTheDocument();
 
-    // marketcap sort filter
-    expect(await screen.findByText(/Desc/)).toBeInTheDocument();
-    const marketCapSortButton = screen.getByText('Desc');
+    // // marketcap sort filter
+    const marketCapSortButton = screen.getByRole('button', {
+      name: 'Market Cap High to Low',
+    });
     expect(marketCapSortButton).toBeInTheDocument();
-    expect(screen.getByText(/name-0-au-desc/)).toBeInTheDocument();
+    expect(screen.getByText(/name-0-ca-desc/)).toBeInTheDocument();
 
-    // show and click asc
+    // // show and click asc
     fireEvent.click(marketCapSortButton);
-    expect(await screen.findByText(/Asc/)).toBeInTheDocument();
-    const ascButton = screen.getByText('Asc');
+    expect(
+      await screen.findByText(/Market Cap Low to High/)
+    ).toBeInTheDocument();
+    const ascButton = screen.getByText('Market Cap Low to High');
     expect(ascButton).toBeInTheDocument();
 
-    // Click Asc
+    // // Click Asc
     fireEvent.click(ascButton);
 
-    expect(await screen.findByText(/name-0-au-asc/)).toBeInTheDocument();
-    expect(screen.queryByText(/name-0-au-desc/)).not.toBeInTheDocument();
-    expect(screen.queryByText(/name-11-au-asc/)).toBeInTheDocument();
-    expect(screen.queryByText(/name-12-au-asc/)).not.toBeInTheDocument();
+    expect(await screen.findByText(/name-0-ca-asc/)).toBeInTheDocument();
+    expect(screen.queryByText(/name-0-ca-desc/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/name-11-ca-asc/)).toBeInTheDocument();
+    expect(screen.queryByText(/name-12-ca-asc/)).not.toBeInTheDocument();
   });
 });

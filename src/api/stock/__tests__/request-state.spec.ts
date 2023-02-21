@@ -10,7 +10,7 @@ describe('requestStateReducer', () => {
   const requestStateReducer = reducerObj[REQUEST_KEY];
 
   const initState: StockRequestState = {
-    countryCode: 'ca',
+    countryCode: 'au',
     offset: 0,
     size: 12,
     marketCapSort: 'desc',
@@ -52,7 +52,7 @@ describe('requestStateReducer', () => {
       const payload = true;
       const actual = requestStateReducer(previousState, setLoadingAC(payload));
       const expected = {
-        countryCode: 'ca',
+        countryCode: 'au',
         offset: 0,
         size: 12,
         marketCapSort: 'desc',
@@ -69,7 +69,7 @@ describe('requestStateReducer', () => {
       const payload = 'This is the error';
       const actual = requestStateReducer(previousState, setErrorAC(payload));
       const expected = {
-        countryCode: 'ca',
+        countryCode: 'au',
         offset: 0,
         size: 12,
         marketCapSort: 'desc',
@@ -83,7 +83,7 @@ describe('requestStateReducer', () => {
   describe('resetStateForNewRequest', () => {
     it('resets request state needed for new request', () => {
       const previousState: StockRequestState = {
-        countryCode: 'ca',
+        countryCode: 'au',
         offset: 0,
         size: 12,
         marketCapSort: 'asc',
@@ -97,7 +97,7 @@ describe('requestStateReducer', () => {
       );
       const expected = {
         ...initState,
-        countryCode: 'ca',
+        countryCode: 'au',
         marketCapSort: 'asc',
       };
       expect(actual).toEqual(expected);

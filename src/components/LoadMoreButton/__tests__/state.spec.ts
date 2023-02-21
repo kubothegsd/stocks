@@ -1,8 +1,5 @@
-import {
-  isShownLoadMoreSelector,
-  nextOffsetSelector,
-} from '../LoadMoreButton/state';
-import { StockRequestState } from '../../api/stock/data-types';
+import { isShownLoadMoreSelector, nextOffsetSelector } from '../state';
+import { StockRequestState } from '../../../api/stock/data-types';
 
 describe('isShownLoadMoreSelector', () => {
   it('always return false if data is not ready', () => {

@@ -1,13 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { DEFAULT_SIZE, DEFAULT_MARKET_CAP_SORT } from '../../constants';
+import {
+  DEFAULT_SIZE,
+  DEFAULT_MARKET_CAP_SORT,
+  DEFAULT_COUNTRY,
+} from '../../constants';
 import { RootState } from '../../store';
 import { StockRequestParams, StockRequestState } from './data-types';
 
 export const REQUEST_KEY = 'stocks_request';
 
 export const initialState = {
-  countryCode: 'ca',
+  countryCode: DEFAULT_COUNTRY,
   offset: 0,
   size: DEFAULT_SIZE,
   marketCapSort: DEFAULT_MARKET_CAP_SORT,

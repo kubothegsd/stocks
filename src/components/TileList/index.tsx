@@ -6,6 +6,7 @@ import {
   AlertDescription,
   Spinner,
   Flex,
+  Center,
 } from '@chakra-ui/react';
 import { Stock } from '../../api/stock/data-types';
 import TileItem from './TileItem';
@@ -39,13 +40,15 @@ const TileListWithLogic: React.FunctionComponent<TileListProps> = () => {
 
   if (loading && !isDataReady) {
     return (
-      <Spinner
-        thickness="8px"
-        speed="0.65s"
-        emptyColor="gray.200"
-        color="blue.500"
-        size="xl"
-      />
+      <Center>
+        <Spinner
+          thickness="8px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="blue.500"
+          size="xl"
+        />
+      </Center>
     );
   }
 
@@ -66,7 +69,7 @@ const TileListWithLogic: React.FunctionComponent<TileListProps> = () => {
 const TileList: React.FunctionComponent<TileListProps> = ({ data }) => (
   <Flex
     width="100%"
-    flexDirection={{ base: 'column', md: 'row' }}
+    flexDirection={{ base: 'column', sm: 'row' }}
     flexWrap="wrap">
     {data.map((stock) => (
       <TileItem key={stock.id} item={stock} />

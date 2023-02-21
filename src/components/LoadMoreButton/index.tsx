@@ -4,7 +4,7 @@ import { stockRequestStateSelector } from '../../api/stock/request-state';
 import { StockRequestState } from '../../api/stock/data-types';
 import { useAppSelector } from '../../hooks/redux';
 import { useFetchStock } from '../../hooks/useFetchStock';
-import { Button } from '@chakra-ui/react';
+import { Button, Center } from '@chakra-ui/react';
 
 const LoadMoreButton = () => {
   const isShownLoadmore = useAppSelector<boolean>(isShownLoadMoreSelector);
@@ -21,13 +21,15 @@ const LoadMoreButton = () => {
 
   return (
     isShownLoadmore && (
-      <Button
-        colorScheme="teal"
-        onClick={handleClick}
-        isLoading={loading}
-        loadingText="Loading">
-        Load more
-      </Button>
+      <Center mt={4} mb={8}>
+        <Button
+          colorScheme="blue"
+          onClick={handleClick}
+          isLoading={loading}
+          loadingText="Loading">
+          Load more
+        </Button>
+      </Center>
     )
   );
 };

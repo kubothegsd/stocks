@@ -61,14 +61,17 @@ const FilterDropdown: React.FunctionComponent<FilterDropdownProps> = ({
   return (
     <div className="dropdown">
       <Menu>
-        <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+        <MenuButton
+          colorScheme="blue"
+          as={Button}
+          rightIcon={<ChevronDownIcon />}>
           {currentOption?.label}
         </MenuButton>
-        <MenuList type="radio">
-          <MenuOptionGroup
-            title="Order"
-            type="radio"
-            value={currentOption?.option}>
+        <MenuList
+          maxHeight="200px"
+          overflowY="auto"
+          _focus={{ outline: 'none' }}>
+          <MenuOptionGroup type="radio" value={currentOption?.option}>
             {options.map((option) => (
               <MenuItemOption
                 key={option.option}

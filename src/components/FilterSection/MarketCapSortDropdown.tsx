@@ -1,6 +1,6 @@
 import React from 'react';
-import { MARKET_CAP_SORT_OPTIONS } from '../constants';
-import FilterDropdown from './shared/FilterDropdown';
+import { MARKET_CAP_SORT_OPTIONS } from '../../constants';
+import FilterDropdown from '../shared/FilterDropdown';
 
 const MarketCapSortDropdown = () => {
   return (
