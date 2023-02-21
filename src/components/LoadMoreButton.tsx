@@ -18,7 +18,6 @@ const LoadMoreButton = () => {
     fetchStockData({ offset: nextOffset });
   };
 
-  console.log('rerender load more', isShownLoadmore);
   return (
     isShownLoadmore && (
       <button onClick={handleClick} disabled={loading}>
