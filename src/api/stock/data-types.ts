@@ -11,7 +11,7 @@ export interface StockRequestState extends StockRequestParams {
 }
 
 export interface Meta {
-  total_records: number | undefined;
+  real_total_records: number | undefined;
 }
 export interface Stock {
   id: number;

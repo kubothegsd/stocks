@@ -34,13 +34,13 @@ const dataReducer = createReducer(initialData, (builder) => {
     });
 });
 
-const initialMeta = { total_records: undefined } as Meta;
+const initialMeta = { real_total_records: undefined } as Meta;
 
 const metaReducer = createReducer(initialMeta, (builder) => {
   builder
     .addCase(setMetaFromResponseAC, (_, action) => {
       const { meta } = action.payload;
-      return { total_records: meta.total_records };
+      return { real_total_records: meta.real_total_records };
     })
     .addCase(resetDataAndMetaAC, () => {
       return initialMeta;
@@ -53,8 +53,8 @@ export const stockMetaSelector = (state: RootState) => state[META_KEY];
 export const stockDataReadySelector = createSelector(
   [stockMetaSelector],
   (meta: Meta) => {
-    const { total_records } = meta;
-    return total_records !== undefined;
+    const { real_total_records } = meta;
+    return real_total_records !== undefined;
   }
 );
 

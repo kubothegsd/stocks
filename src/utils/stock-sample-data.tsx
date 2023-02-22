@@ -32,16 +32,16 @@ export const genRawStock = (stock: Stock): StockRaw => ({
 
 export const genStockResponseSample = (
   stocks: Stock[],
-  total_records = 100
+  real_total_records = 100
 ): StockResponse => {
   const stockRaws: StockRaw[] = stocks.map(genRawStock);
   return {
     data: stockRaws,
     meta: {
       noResultIfLimit: false,
-      real_total_records: 3262,
+      real_total_records,
       state: 'read',
-      total_records,
+      total_records: 3262,
     },
   };
 };

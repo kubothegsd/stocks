@@ -14,9 +14,10 @@ export const isShownLoadMoreSelector = createSelector(
     stockRequestState: StockRequestState,
     stockDataReady: boolean
   ) => {
-    const { total_records } = meta;
+    const { real_total_records } = meta;
     const { offset, size } = stockRequestState;
-    const fetchNotFull = offset + size < total_records;
+    const fetchNotFull =
+      real_total_records !== undefined && offset + size < real_total_records;
     return stockDataReady && fetchNotFull;
   }
 );

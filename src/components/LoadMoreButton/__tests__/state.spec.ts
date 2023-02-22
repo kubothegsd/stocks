@@ -3,7 +3,7 @@ import { StockRequestState } from '../../../api/stock/data-types';
 
 describe('isShownLoadMoreSelector', () => {
   it('always return false if data is not ready', () => {
-    const meta = { total_records: 100 };
+    const meta = { real_total_records: 100 };
     const stockRequestState = { offset: 0, size: 12 };
     const stockDataReady = false;
     const actual = isShownLoadMoreSelector.resultFunc(
@@ -16,9 +16,9 @@ describe('isShownLoadMoreSelector', () => {
   });
 
   it.each`
-    meta                      | stockRequestState           | expected
-    ${{ total_records: 100 }} | ${{ offset: 0, size: 12 }}  | ${true}
-    ${{ total_records: 100 }} | ${{ offset: 90, size: 12 }} | ${false}
+    meta                           | stockRequestState           | expected
+    ${{ real_total_records: 100 }} | ${{ offset: 0, size: 12 }}  | ${true}
+    ${{ real_total_records: 100 }} | ${{ offset: 90, size: 12 }} | ${false}
   `(
     'returns $expected if meta is $meta, stockRequestState is $stockRequestState and data ready is true',
     ({ meta, stockRequestState, expected }) => {
