@@ -2,7 +2,7 @@
 
 https://stocks-simply-wall.netlify.app/
 
-## Requiremens clarification:
+## Requirements clarification:
 
 - The radar chart is nice to have
 - Do not expect the data coming from the api to change.
