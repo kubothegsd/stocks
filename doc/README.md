@@ -17,7 +17,7 @@
 
 ## Architecture
 
-image
+![architect](https://raw.githubusercontent.com/kubothegsd/stocks/blob/main/doc/architect.png)
 
 ## Data Management - Data structures
 
@@ -69,7 +69,13 @@ Please see the image above and a code in `src/components`
 
 ## Rendering performance (Check for performance bottlenecks)
 
-image
+### Web performance
+
+![web_performance](https://raw.githubusercontent.com/kubothegsd/stocks/blob/main/doc/web_perf.png)
+
+### Mobile performance
+
+![architect](https://raw.githubusercontent.com/kubothegsd/stocks/blob/main/doc/mobile_perf.png)
 
 Right now, the performance on the mobile is poor, lighthouse score for mobile is 85. We can use the pre-render or SSR technique to improve it.
 
