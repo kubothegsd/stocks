@@ -1,3 +1,7 @@
+## Result:
+
+https://stocks-simply-wall.netlify.app/
+
 ## Requiremens clarification:
 
 - The radar chart is nice to have
@@ -47,7 +51,7 @@ Store the response data and response meta. The data is used to show in the tile 
 
 In render, this response state will be used to:
 
-- The tile grid
+- The tile list
 - Decide to show load more or not
 
 ## Data fetching:
@@ -62,7 +66,7 @@ The data, meta and some request states: offset, size, loading, error will be res
 
 ## Component grouping (How you organise your components into logical groups)
 
-Please see the image above and a code in `src/components`
+Please see the image above and source code in `src/components`
 
 - The resuable component: FilterDropdown. It's reused for 2 filters: country and market cap
 - The resuable hook: useFetchStock
@@ -71,7 +75,7 @@ Please see the image above and a code in `src/components`
 
 ### Web performance
 
-![web_performance](https://raw.githubusercontent.com/kubothegsd/stocks/main/doc/architect.png)
+![web_performance](https://raw.githubusercontent.com/kubothegsd/stocks/main/doc/web_perf.png)
 
 ### Mobile performance
 
