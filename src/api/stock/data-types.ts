@@ -2,7 +2,7 @@ export interface StockRequestParams {
   countryCode: string;
   offset: number;
   size: number;
-  marketCapSort?: 'asc' | 'desc';
+  marketCapSort: 'asc' | 'desc';
 }
 
 export interface StockRequestState extends StockRequestParams {
@@ -33,7 +33,7 @@ export interface Stock {
 }
 
 export interface StockRaw extends Stock {
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export interface StockResponse {

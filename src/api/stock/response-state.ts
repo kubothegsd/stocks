@@ -11,9 +11,7 @@ export const appendStockDataFromResponseAC = createAction<StockResponse>(
 export const setMetaFromResponseAC = createAction<StockResponse>(
   'stock/set_meta_from_response'
 );
-export const resetDataAndMetaAC = createAction<StockResponse>(
-  'stock/reset_data_and_meta'
-);
+export const resetDataAndMetaAC = createAction('stock/reset_data_and_meta');
 
 const initialData = [] as Stock[];
 
