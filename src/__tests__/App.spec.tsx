@@ -1,22 +1,14 @@
 import React from 'react';
-import { setupServer } from 'msw/node';
-import { handlers } from './mocks/handlers';
-import { render, screen, fireEvent } from '../utils/test-helper';
+import {
+  render,
+  screen,
+  fireEvent,
+  setUpMockServer,
+} from '../utils/test-helper';
 import { App } from '../App';
 import { store } from '../store';
 
-const server = setupServer(...handlers);
-
-// Enable API mocking before tests.
-beforeAll(() => server.listen());
-
-// Reset any runtime request handlers we may add during the tests.
-afterEach(() => server.resetHandlers());
-
-// Disable API mocking after the tests are done.
-afterAll(() => {
-  server.close();
-});
+const { server, dataResponse } = setUpMockServer();
 
 describe('App', () => {
   it(`
@@ -27,6 +19,7 @@ describe('App', () => {
     - show and click desc button to open asc button
     - show and click asc option to reset and load data again for asc
   `, async () => {
+    server.use(dataResponse);
     render(<App />, { store });
 
     expect(screen.getByText('Loading...')).toBeVisible();
@@ -34,7 +27,7 @@ describe('App', () => {
     // show a list of 12 first tiles
 
     expect(await screen.findByText(/name-0/)).toBeInTheDocument();
-    console.log(screen.getByText(/name-0/).innerHTML);
+
     expect(screen.queryByText(/name-0-au/)).toBeInTheDocument();
     expect(screen.queryByText(/name-11-au/)).toBeInTheDocument();
     expect(screen.queryByText(/name-12-au/)).not.toBeInTheDocument();

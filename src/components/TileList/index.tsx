@@ -76,7 +76,7 @@ const TileListWithLogic: React.FunctionComponent<TileListProps> = () => {
 
   return (
     <React.Fragment>
-      <TileList data={stockData} />
+      <TileListData data={stockData} />
       {error && (
         <Alert status="error">
           <AlertIcon />
@@ -88,7 +88,9 @@ const TileListWithLogic: React.FunctionComponent<TileListProps> = () => {
   );
 };
 
-const TileList: React.FunctionComponent<TileListProps> = ({ data }) => (
+const TileListData: React.FunctionComponent<TileListProps> = ({
+  data = [],
+}) => (
   <Flex
     width="100%"
     flexDirection={{ base: 'column', sm: 'row' }}
@@ -99,7 +101,7 @@ const TileList: React.FunctionComponent<TileListProps> = ({ data }) => (
   </Flex>
 );
 
-TileList.defaultProps = {
+TileListData.defaultProps = {
   data: [],
 };
 

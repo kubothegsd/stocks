@@ -3,9 +3,16 @@ import { render, RenderOptions } from '@testing-library/react';
 import type { PreloadedState } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
+import { setupServer } from 'msw/node';
 import { configureAppStore } from '../store';
 import type { AppStore, RootState } from '../store';
 import theme from '../theme';
+import {
+  handlers,
+  dataResponse,
+  emptyResponse,
+  errorResponse,
+} from '../mocks/handlers';
 
 // This type interface extends the default options for render from RTL, as well
 // as allows the user to specify other things such as initialState, store.
@@ -38,3 +45,25 @@ const customRender = (
 
 export * from '@testing-library/react';
 export { customRender as render };
+
+export const setUpMockServer = () => {
+  const server = setupServer(...handlers);
+
+  // Enable API mocking before tests.
+  beforeAll(() => server.listen());
+
+  // Reset any runtime request handlers we may add during the tests.
+  afterEach(() => server.resetHandlers());
+
+  // Disable API mocking after the tests are done.
+  afterAll(() => {
+    server.close();
+  });
+
+  return {
+    server,
+    dataResponse,
+    emptyResponse,
+    errorResponse,
+  };
+};

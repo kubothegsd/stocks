@@ -33,10 +33,10 @@ const fetchStateSlice = createSlice({
         marketCapSort,
       };
     },
-    setError(state, action: PayloadAction<string>) {
+    setError(state, action: PayloadAction<StockRequestState['error']>) {
       state.error = action.payload;
     },
-    setLoading(state, action: PayloadAction<boolean>) {
+    setLoading(state, action: PayloadAction<StockRequestState['loading']>) {
       state.loading = action.payload;
     },
     resetStateForNewRequest(

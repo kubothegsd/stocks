@@ -46,9 +46,6 @@ const FilterDropdown: React.FunctionComponent<FilterDropdownProps> = ({
       return;
     }
 
-    // set current value to filter
-    dispatch(resetDataAndMetaAC());
-
     // Reset data
     dispatch(resetDataAndMetaAC());
     dispatch(resetStateForNewRequestAC({ [filterKey]: value }));

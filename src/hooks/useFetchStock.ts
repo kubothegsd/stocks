@@ -58,11 +58,9 @@ export const useFetchStock = () => {
         });
 
         if (!response.ok) {
-          if (response.statusText) {
-            throw new Error(response.statusText);
-          }
           const errorJSON: ErrorsResponse = await response.json();
-          throw new Error(errorJSON.errors[0].detail);
+          const errorMsg = errorJSON.errors[0]?.detail || response.statusText;
+          throw new Error(errorMsg);
         }
         const json: StockResponse = await response.json();
 
